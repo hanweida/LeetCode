@@ -1,6 +1,8 @@
 package com.jerry.leetcode.dynamic;
 
 
+import java.util.Arrays;
+
 /**
  * 动态规划
  */
@@ -9,7 +11,6 @@ public class Palindromic {
     public static void main(String[] args) {
         //最长回文子串
         //System.out.println(longestPalindrome("ac"));
-
         //斐波那契
     }
 
@@ -77,5 +78,54 @@ public class Palindromic {
         }
         return dp[N];
     }
-    
+
+    /**
+     * 爬楼梯 70题
+     * https://leetcode-cn.com/problems/climbing-stairs/
+     * @param n
+     * @return
+     */
+    public int climbStairs(int n) {
+        //经过计算 f(2)=2 f(3)=3 f(4)=4= f(2) + f(3); f(5)=f(4) + f(3)
+        //得出规律 f(n)=f(n-1) + f(n-2)
+
+        if(n < 4){
+            return n;
+        }
+        int[] dp = new int[n+1];
+        dp[2]=2;
+        dp[3]=3;
+        for(int i = 4; i < n+1; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        return dp[n];
+    }
+
+    /**
+     * 零钱兑换 322
+     * https://leetcode-cn.com/problems/coin-change/
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        Arrays.fill(dp, amount+1);
+
+        for(int i = 1; i<amount+1; i++){
+            for(int coin : coins){
+                if(i - coin > 0){
+                    dp[i] = Math.min(dp[i], 1 + dp[i-coin]);
+                }
+                if(i - coin == 0){
+                    dp[i] =1;
+                }
+            }
+        }
+
+        if(dp[amount] == amount + 1){
+            dp[amount] = -1;
+        }
+        return dp[amount];
+    }
 }
