@@ -12,6 +12,9 @@ public class Palindromic {
         //最长回文子串
         //System.out.println(longestPalindrome("ac"));
         //斐波那契
+
+        int[] arry =  {1,2,3,1};
+        System.out.println(rob(arry));
     }
 
     /**
@@ -127,5 +130,36 @@ public class Palindromic {
             dp[amount] = -1;
         }
         return dp[amount];
+    }
+
+    /**
+     * 198. 打家劫舍
+     * https://leetcode-cn.com/problems/house-robber/
+     */
+    public static int rob(int[] nums) {
+        int length = nums.length;
+        int[] dp = new int[length+1];
+
+        if(length == 0){
+            return 0;
+        }
+        if(length == 1){
+            dp[0] = 0;
+            dp[1] = nums[0];
+            return nums[0];
+        }
+        if(length == 2){
+            dp[0] = 0;
+            dp[1] = nums[0];
+            dp[2] = Math.max(nums[0], nums[1]);
+            return dp[2];
+        }
+        dp[0] = 0;
+        dp[1] = nums[0];
+        dp[2] = Math.max(nums[0], nums[1]);
+        for(int i = 3; i<= length; i++){
+            dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-1]);
+        }
+        return dp[length];
     }
 }
