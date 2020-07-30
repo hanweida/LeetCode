@@ -8,8 +8,8 @@ public class Solution2 {
     // 33. 搜索旋转排序数组
     //假设按照升序排序的数组在预先未知的某个点上进行了旋转。
     public static void main(String[] args) {
-        int[] nums = {6,7,8,9,0,1,2,4,5};
-        int result = searchRange(nums, 6);
+        int[] nums = {1,3,1,1,1};
+        int result = searchRange(nums, 3);
         System.out.println(result);
         
     }
@@ -50,7 +50,11 @@ public class Solution2 {
                 return mid;
             }
             //有序
-            if(nums[left] <= nums[mid]){
+            if(nums[left] == nums[mid]){
+                left ++;
+                continue;
+            }
+            if(nums[left] < nums[mid]){
                 if(nums[left] <= target && nums[mid] >= target){
                     right = mid;
                 } else {
