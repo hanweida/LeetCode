@@ -2,6 +2,7 @@ package com.jerry.leetcode.dynamic;
 
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 /**
  * 动态规划
@@ -13,8 +14,11 @@ public class Palindromic {
         //System.out.println(longestPalindrome("ac"));
         //斐波那契
 
-        int[] arry =  {1,2,3,1};
-        System.out.println(rob(arry));
+        //int[] arry =  {1,2,3,1};
+        //System.out.println(rob(arry));
+
+        int[] arry = {1,3};
+        System.out.println(findLengthOfLCIS(arry));
     }
 
     /**
@@ -161,5 +165,23 @@ public class Palindromic {
             dp[i] = Math.max(dp[i-1], dp[i-2] + nums[i-1]);
         }
         return dp[length];
+    }
+
+    /**
+     * https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/
+     * 673. 最长递增子序列的个数
+     */
+    public static int findLengthOfLCIS(int[] nums) {
+        if (nums == null || nums.length == 0) return 0;
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp, 1);
+        int max = 0;
+        for(int i = 1; i < nums.length; i++){
+            if(nums[i] > nums[i-1]){
+                dp[i] = dp[i-1] + 1;
+                max = Math.max(max, dp[i]);
+            }
+        }
+        return max;
     }
 }
