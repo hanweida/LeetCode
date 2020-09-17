@@ -17,8 +17,8 @@ import java.util.HashMap;
  */
 public class MinWindow {
     public static void main(String[] args) {
-        String S = "ADOBECODEBANC";
-        String T = "ABC";
+        String S = "a";
+        String T = "aa";
 
         MinWindow minWindow = new MinWindow();
         System.out.println(minWindow.minWindow(S, T));
@@ -40,7 +40,7 @@ public class MinWindow {
 
 
         for(int i = 0 ; i< tArray.length; i++){
-            needs.putIfAbsent(tArray[i], ((int)needs.getOrDefault(tArray[i], 0)) +1);
+            needs.put(tArray[i], ((int)needs.getOrDefault(tArray[i], 0)) +1);
         }
 
         while (right < s.length()){
@@ -55,7 +55,7 @@ public class MinWindow {
             right++;
 
             //符合条件，left 指针移动
-            while (match == t.length()){
+            while (match == needs.size()){
                 //判断最小长度
                 if(right - left < min){
                     //记录最小子串起始位置

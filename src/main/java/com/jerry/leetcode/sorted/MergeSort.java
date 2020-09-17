@@ -13,6 +13,16 @@ import java.util.Arrays;
  *
  * 时间复杂度是 log(nlogn)
  * 稳定排序 不受输入数据的影响； 以空间换时间
+ *
+ *
+ * 7 8 2 1 3
+ * 【7 8】【2 1 3】
+ * 【7 8】 【2 1】 【3】
+ * divide: 【7】【8】 【2】【1】【3】
+ * merge: 【7 8】 【1 2】 【3】
+ * 【7 8】 【1 2 3】
+ * 【7 8 1 2 3】
+ * 【1 2 3 7 8】
  */
 public class MergeSort {
     public static void main(String []args){

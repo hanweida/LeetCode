@@ -41,7 +41,7 @@ public class TwoRoadQuickSort {
         int j = right;
         while (true){
             while (i <= right && nums[left] > nums[i]){
-                i++;
+                i++;                                                                                                                      
             }
             while (j > left && nums[left] < nums[j]){
                 j--;
